@@ -3,7 +3,6 @@
 import pymongo
 import json
 
-dbconnection = pymongo.MongoClient("mongodb+srv://NoahJ:EwYTva12oS@cluster0.4kwrg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = dbconnection["MyDB_100336212"]
 dbcollection = db["MyFriends_100336212"]
 #end of ripped code
@@ -18,7 +17,7 @@ def menuDisp():
     print('1) Add a Document to the Collection')
     print('2) Display your Documents')
     print('3) Exit')
-    
+
 def menuLogic():
     userInp = 0
     while userInp != EXIT:
@@ -45,7 +44,7 @@ def importJSON():
         dbContents = list(dbcollection.find({"id" : data[i]["id"]}))
         if len(dbContents) == 0:
             dbcollection.insert_one(data[i])
-    
+
 def dumpContents():
     dbContents = dbcollection.find({})
     print('{:7s}{:20s}{:20s}{:40s}'.format("ID", "First Name", "Last Name", "Cars"),end='')
@@ -60,7 +59,7 @@ def dumpContents():
                 print(j["make"], end=", ")
                 cars += 1
     print("")
-        
+
 def getHighestID():
     dbContents = list(dbcollection.find({}))
     highest = dbContents[0]["id"]
@@ -68,19 +67,19 @@ def getHighestID():
         if dbContents[i]["id"] > highest:
             highest = dbContents[i]["id"]
     return highest
-        
+
 def addDoc():
     newID = getHighestID() + 1
     fName = str(input("What is your first name?"))
     lName = str(input("What is your last name?"))
     carArr = [None] #use loop to get makes
     #db.insert_one()
-    
+
 
 def main():
     importJSON() #imports initial JSON file
     menuLogic()
     print("=======================")
-    
+
 if __name__ == '__main__':
     main()
