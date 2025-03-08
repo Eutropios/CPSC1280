@@ -1,0 +1,18 @@
+4.
+    a.
+        If one enters a valid IP when prompted by the script, the script sends 2 echo requests to the IP address.
+        It then receives the ping (or time taken for a message to be sent round trip to and from the IP address).
+        It also displays information regarding the number of packets transmitted (in this case 2, because of the 2 echo
+        requests), as well as the information about packet loss, and other relavant information.
+    
+    b.
+        The script simply returns "server dead" when an invalid IP address is passed as an argument.
+    
+    c.
+        The file "err" gets created regardless of there being an instance of an error. When an invalid IP does get passed
+        to the script, the file contains the message:
+            "ping: abc: Name or service not known
+            
+            "
+        The message takes up two lines. one of which being empty.
+    
